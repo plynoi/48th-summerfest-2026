@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siam-Nippon Summer Fest 2026 - Schedule</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        select {
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            outline: none;
+            cursor: pointer;
+            background-color: #fafafa;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background-color: #2c3e50;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        /* สไตล์ของป้ายชื่อเมมเบอร์ */
+        .member-badge {
+            background-color: #e2e8f0;
+            color: #475569;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        /* สไตล์ของป้ายกิจกรรม (แยกสี) */
+        .activity-badge {
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        
+        /* กำหนดสีให้แต่ละกิจกรรม */
+        .act-shot { background-color: #ffe4e6; color: #e11d48; } /* ชมพู-แดง */
+        .act-don { background-color: #e0f2fe; color: #0284c7; } /* ฟ้า */
+        .act-mai { background-color: #fef08a; color: #a16207; } /* เหลือง */
+        .act-hachi { background-color: #dcfce7; color: #15803d; } /* เขียว */
+        .act-du { background-color: #f3e8ff; color: #7e22ce; } /* ม่วง */
+        .act-sisters { background-color: #ffedd5; color: #c2410c; } /* ส้ม */
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>ตารางกิจกรรม Summer Fest 2026</h1>
+    
+    <div class="filters">
+        <select id="dayFilter" onchange="renderTable()">
+            <option value="all">🗓️ ทุกวัน</option>
+            <option value="ศุกร์ 27 มี.ค.">ศุกร์ 27 มี.ค.</option>
+            <option value="เสาร์ 28 มี.ค.">เสาร์ 28 มี.ค.</option>
+            <option value="อาทิตย์ 29 มี.ค.">อาทิตย์ 29 มี.ค.</option>
+        </select>
+
+        <select id="memberFilter" onchange="renderTable()">
+            <option value="all">👩‍🎤 เมมเบอร์ทุกคน</option>
+            <option value="Hoop">Hoop</option>
+            <option value="Yoghurt">Yoghurt</option>
+            <option value="Luksorn">Luksorn</option>
+            <option value="Khowjow">Khowjow</option>
+            <option value="Jew">Jew</option>
+            <option value="Pancake">Pancake</option>
+            <option value="Emmy">Emmy</option>
+            <option value="Lingling">Lingling</option>
+        </select>
+
+        <select id="activityFilter" onchange="renderTable()">
+            <option value="all">🎪 ทุกกิจกรรม</option>
+        </select>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>วันที่</th>
+                <th>เวลา</th>
+                <th>เมมเบอร์</th>
+                <th>กิจกรรม</th>
+            </tr>
+        </thead>
+        <tbody id="scheduleBody">
+            </tbody>
+    </table>
+</div>
+
+<script>
+    const scheduleData = [
+        { day: "ศุกร์ 27 มี.ค.", time: "10:00 - 10:45", member: "Emmy", activity: "ดูแปลกนะคะ" },
+        { day: "ศุกร์ 27 มี.ค.", time: "10:00 - 10:45", member: "Hoop", activity: "Shot Me Girls" },
+        { day: "ศุกร์ 27 มี.ค.", time: "11:00 - 11:45", member: "Jew", activity: "โดนนนนตก!" },
+        { day: "ศุกร์ 27 มี.ค.", time: "12:00 - 12:45", member: "Emmy", activity: "Shot Me Girls" },
+        { day: "ศุกร์ 27 มี.ค.", time: "12:00 - 12:45", member: "Hoop", activity: "โดนนนนตก!" },
+        { day: "ศุกร์ 27 มี.ค.", time: "12:00 - 12:45", member: "Jew", activity: "ดูแปลกนะคะ" },
+        { day: "ศุกร์ 27 มี.ค.", time: "13:00 - 13:45", member: "Hoop", activity: "(ไม่) พร้อม ka" },
+        { day: "ศุกร์ 27 มี.ค.", time: "14:00 - 14:45", member: "Hoop", activity: "Hachi Cha" },
+        { day: "ศุกร์ 27 มี.ค.", time: "14:00 - 14:45", member: "Yoghurt", activity: "Shot Me Girls" },
+        { day: "ศุกร์ 27 มี.ค.", time: "15:00 - 15:45", member: "Hoop", activity: "โดนนนนตก!" },
+        { day: "ศุกร์ 27 มี.ค.", time: "15:00 - 15:45", member: "Lingling", activity: "โดนนนนตก!" },
+        { day: "ศุกร์ 27 มี.ค.", time: "15:00 - 15:45", member: "Luksorn", activity: "Shot Me Girls" },
+        { day: "ศุกร์ 27 มี.ค.", time: "15:00 - 15:45", member: "Yoghurt", activity: "(ไม่) พร้อม ka" },
+        { day: "ศุกร์ 27 มี.ค.", time: "16:00 - 16:45", member: "Luksorn", activity: "ดูแปลกนะคะ" },
+        { day: "ศุกร์ 27 มี.ค.", time: "17:00 - 17:45", member: "Khowjow", activity: "Shot Me Girls" },
+        { day: "ศุกร์ 27 มี.ค.", time: "17:00 - 17:45", member: "Yoghurt", activity: "โดนนนนตก!" },
+        { day: "ศุกร์ 27 มี.ค.", time: "18:00 - 18:45", member: "Jew", activity: "Shot Me Girls" },
+        { day: "ศุกร์ 27 มี.ค.", time: "18:00 - 18:45", member: "Khowjow", activity: "ดูแปลกนะคะ" },
+        { day: "ศุกร์ 27 มี.ค.", time: "18:00 - 18:45", member: "Lingling", activity: "Hachi Cha" },
+        
+        { day: "เสาร์ 28 มี.ค.", time: "10:00 - 10:45", member: "Jew", activity: "Hachi Cha" },
+        { day: "เสาร์ 28 มี.ค.", time: "10:00 - 10:45", member: "Khowjow", activity: "(ไม่) พร้อม ka" },
+        { day: "เสาร์ 28 มี.ค.", time: "11:00 - 11:45", member: "Emmy", activity: "Hachi Cha" },
+        { day: "เสาร์ 28 มี.ค.", time: "11:00 - 11:45", member: "Luksorn", activity: "The Shoot Sisters" },
+        { day: "เสาร์ 28 มี.ค.", time: "12:00 - 12:45", member: "Khowjow", activity: "โดนนนนตก!" },
+        { day: "เสาร์ 28 มี.ค.", time: "12:00 - 12:45", member: "Luksorn", activity: "(ไม่) พร้อม ka" },
+        { day: "เสาร์ 28 มี.ค.", time: "13:00 - 13:45", member: "Khowjow", activity: "Hachi Cha" },
+        { day: "เสาร์ 28 มี.ค.", time: "13:00 - 13:45", member: "Pancake", activity: "Shot Me Girls" },
+        { day: "เสาร์ 28 มี.ค.", time: "13:00 - 13:45", member: "Yoghurt", activity: "The Shoot Sisters" },
+        { day: "เสาร์ 28 มี.ค.", time: "14:00 - 14:45", member: "Lingling", activity: "ดูแปลกนะคะ" },
+        { day: "เสาร์ 28 มี.ค.", time: "14:00 - 14:45", member: "Pancake", activity: "(ไม่) พร้อม ka" },
+        { day: "เสาร์ 28 มี.ค.", time: "14:00 - 14:45", member: "Yoghurt", activity: "Hachi Cha" },
+        { day: "เสาร์ 28 มี.ค.", time: "15:00 - 15:45", member: "Hoop", activity: "Shot Me Girls" },
+        { day: "เสาร์ 28 มี.ค.", time: "15:00 - 15:45", member: "Luksorn", activity: "โดนนนนตก!" },
+        { day: "เสาร์ 28 มี.ค.", time: "15:00 - 15:45", member: "Yoghurt", activity: "Shot Me Girls" },
+        { day: "เสาร์ 28 มี.ค.", time: "16:00 - 16:45", member: "Emmy", activity: "The Shoot Sisters" },
+        { day: "เสาร์ 28 มี.ค.", time: "16:00 - 16:45", member: "Hoop", activity: "ดูแปลกนะคะ" },
+        { day: "เสาร์ 28 มี.ค.", time: "16:00 - 16:45", member: "Khowjow", activity: "Hachi Cha" },
+        { day: "เสาร์ 28 มี.ค.", time: "16:00 - 16:45", member: "Lingling", activity: "Shot Me Girls" },
+        { day: "เสาร์ 28 มี.ค.", time: "16:00 - 16:45", member: "Pancake", activity: "ดูแปลกนะคะ" },
+        { day: "เสาร์ 28 มี.ค.", time: "17:00 - 17:45", member: "Luksorn", activity: "The Shoot Sisters" },
+        { day: "เสาร์ 28 มี.ค.", time: "17:00 - 17:45", member: "Pancake", activity: "The Shoot Sisters" },
+        { day: "เสาร์ 28 มี.ค.", time: "18:00 - 18:45", member: "Emmy", activity: "โดนนนนตก!" },
+        { day: "เสาร์ 28 มี.ค.", time: "18:00 - 18:45", member: "Hoop", activity: "The Shoot Sisters" },
+        { day: "เสาร์ 28 มี.ค.", time: "18:00 - 18:45", member: "Lingling", activity: "The Shoot Sisters" },
+
+        { day: "อาทิตย์ 29 มี.ค.", time: "10:00 - 10:45", member: "Khowjow", activity: "Hachi Cha" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "10:00 - 10:45", member: "Luksorn", activity: "Hachi Cha" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "11:00 - 11:45", member: "Emmy", activity: "Shot Me Girls" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "11:00 - 11:45", member: "Pancake", activity: "(ไม่) พร้อม ka" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "12:00 - 12:45", member: "Emmy", activity: "The Shoot Sisters" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "12:00 - 12:45", member: "Hoop", activity: "โดนนนนตก!" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "12:00 - 12:45", member: "Luksorn", activity: "Shot Me Girls" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "12:00 - 12:45", member: "Pancake", activity: "ดูแปลกนะคะ" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "13:00 - 13:45", member: "Khowjow", activity: "โดนนนนตก!" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "13:00 - 13:45", member: "Lingling", activity: "Shot Me Girls" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "14:00 - 14:45", member: "Hoop", activity: "(ไม่) พร้อม ka" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "14:00 - 14:45", member: "Luksorn", activity: "The Shoot Sisters" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "14:00 - 14:45", member: "Pancake", activity: "Hachi Cha" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "14:00 - 14:45", member: "Yoghurt", activity: "โดนนนนตก!" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "15:00 - 15:45", member: "Emmy", activity: "โดนนนนตก!" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "15:00 - 15:45", member: "Jew", activity: "The Shoot Sisters" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "15:00 - 15:45", member: "Lingling", activity: "The Shoot Sisters" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "15:00 - 15:45", member: "Yoghurt", activity: "(ไม่) พร้อม ka" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "16:00 - 16:45", member: "Jew", activity: "Shot Me Girls" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "16:00 - 16:45", member: "Khowjow", activity: "(ไม่) พร้อม ka" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "16:00 - 16:45", member: "Yoghurt", activity: "ดูแปลกนะคะ" },
+        { day: "อาทิตย์ 29 มี.ค.", time: "17:00 - 17:45", member: "Pancake", activity: "Shot Me Girls" }
+    ];
+
+    // ฟังก์ชันสำหรับเลือกคลาส CSS ของสีกิจกรรม
+    function getActivityColorClass(activityName) {
+        if (activityName === "Shot Me Girls") return "act-shot";
+        if (activityName === "โดนนนนตก!") return "act-don";
+        if (activityName === "(ไม่) พร้อม ka") return "act-mai";
+        if (activityName === "Hachi Cha") return "act-hachi";
+        if (activityName === "ดูแปลกนะคะ") return "act-du";
+        if (activityName === "The Shoot Sisters") return "act-sisters";
+        return "";
+    }
+
+    function renderTable() {
+        const dayFilter = document.getElementById("dayFilter").value;
+        const memberFilter = document.getElementById("memberFilter").value;
+        const activityFilter = document.getElementById("activityFilter").value;
+        const tbody = document.getElementById("scheduleBody");
+        
+        tbody.innerHTML = "";
+
+        const filteredData = scheduleData.filter(item => {
+            const matchDay = dayFilter === "all" || item.day === dayFilter;
+            const matchMember = memberFilter === "all" || item.member === memberFilter;
+            const matchActivity = activityFilter === "all" || item.activity === activityFilter;
+            return matchDay && matchMember && matchActivity;
+        });
+
+        filteredData.forEach(item => {
+            const row = document.createElement("tr");
+            const colorClass = getActivityColorClass(item.activity); // ดึงคลาสสีมาใช้
+            
+            row.innerHTML = `
+                <td>${item.day}</td>
+                <td><strong>${item.time}</strong></td>
+                <td><span class="member-badge">${item.member}</span></td>
+                <td><span class="activity-badge ${colorClass}">${item.activity}</span></td>
+            `;
+            tbody.appendChild(row);
+        });
+
+        if (filteredData.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#888; padding: 20px;">ไม่พบตารางกิจกรรมในช่วงเวลานี้</td></tr>`;
+        }
+    }
+
+    function populateActivityFilter() {
+        const activityFilterSelect = document.getElementById('activityFilter');
+        const activities = [...new Set(scheduleData.map(item => item.activity))];
+        activities.sort();
+        activities.forEach(activity => {
+            const option = document.createElement('option');
+            option.value = activity;
+            option.textContent = activity;
+            activityFilterSelect.appendChild(option);
+        });
+    }
+
+    populateActivityFilter();
+    renderTable();
+</script>
+
+</body>
+</html>
