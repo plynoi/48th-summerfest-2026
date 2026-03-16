@@ -10,6 +10,8 @@ This is a simple, single-page web application to display and filter the schedule
 
 ## ✨ Features
 
+**Note**: This web app does not include all member!
+
 -   **Dynamic Table:** Displays all event activities in a clean, easy-to-read table.
 -   **Multi-Filtering:** Filter the schedule simultaneously by:
     -   🗓️ Day
