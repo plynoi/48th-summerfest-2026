@@ -16,3 +16,4 @@ jspm_packages/
 *.ntvs*
 *.njsproj
 *.sln
+.DS_Store
