@@ -32,7 +32,7 @@ You can access the web via [https://plynoi.github.io/48th-summerfest-2026/](http
 
 ## 🚀 How to Use
 
-Simply download the `index.html` file and open it in any modern web browser.
+Simply download the project, open the  `index.html` file in any modern web browser.
 
 ## ✏️ How to Modify
 
