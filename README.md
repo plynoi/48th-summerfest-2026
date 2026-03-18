@@ -26,6 +26,10 @@ This is a simple, single-page web application to display and filter the schedule
 -   **No Dependencies:** Runs entirely in the browser with vanilla HTML, CSS, and JavaScript. No build step or server required.
 -   **Oshi Members**: They are [my](https://plynoi.com/) selected.
 
+## Access
+
+You can access the web via [https://plynoi.github.io/48th-summerfest-2026/](https://plynoi.github.io/48th-summerfest-2026/) link.
+
 ## 🚀 How to Use
 
 Simply download the `index.html` file and open it in any modern web browser.
