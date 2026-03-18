@@ -1,6 +1,6 @@
 # BNK48 & CGM48 Siam-Nippon Summer Fest 2026 - Interactive Schedule
 
-- version: 2
+- version: 2.5
 - laste updated: Mar 18th, 2026
 
 ## Overview
@@ -27,8 +27,8 @@ This is a simple, static web application to display and filter the schedule for 
 -   **Color-Coded Activities:** Each activity type has a unique color badge for quick visual identification.
 -   **Dynamic Filters:** The activity filter dropdown is populated automatically from the schedule data.
 -   **Responsive Design:** The layout is optimized for both desktop and mobile viewing.
--   **No Dependencies:** Runs entirely in the browser with vanilla HTML, CSS, and JavaScript. No build step or server required.
--   **Oshi Members**: They are [my](https://plynoi.com/) selected.
+-   **No Dependencies:** Runs entirely in the browser with vanilla HTML, CSS, and JavaScript. No build step required.
+-   **Oshi Members**: They are [my](https://plynoi.com/) oshi members!.
 
 ## Access
 

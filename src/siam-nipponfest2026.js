@@ -34,8 +34,10 @@
     // ฟังก์ชันสำหรับดึงข้อมูลจากไฟล์ JSON และจัดการข้อผิดพลาด
     async function fetchScheduleData(url) {
         try {
+            console.log(`Fetching schedule data from: ${url}`);
             const response = await fetch(url);
             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+            console.log('Data fetched successfully from JSON.');
             return await response.json();
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -172,6 +174,7 @@
                 renderTable(); // วาดตารางใหม่
             });
         }
+        console.log('Event listeners set up successfully.');
     }
         
     // เมื่อโหลดหน้าเว็บเสร็จสิ้น ให้ดึงข้อมูลจาก JSON และเติมตัวเลือกในฟิลเตอร์
@@ -181,6 +184,7 @@
         extractFilterData();
         populateFilters();
         setupEventListeners();
+        console.log('Schedule data loaded and filters populated successfully.');
     });
 
 })();
