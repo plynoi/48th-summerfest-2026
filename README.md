@@ -1,5 +1,8 @@
 # Siam-Nippon Summer Fest 2026 - Interactive Schedule
 
+- version: 2
+- laste updated: Mar 18th, 2026
+
 This is a simple, single-page web application to display and filter the schedule for the "BNK48 & CGM48 Siam-Nippon Summer Fest 2026" event. It allows users to easily find specific activities by filtering by day, member, and activity type.
 
 ## Event Schedule
@@ -21,6 +24,7 @@ This is a simple, single-page web application to display and filter the schedule
 -   **Dynamic Filters:** The activity filter dropdown is populated automatically from the schedule data.
 -   **Responsive Design:** The layout is optimized for both desktop and mobile viewing.
 -   **No Dependencies:** Runs entirely in the browser with vanilla HTML, CSS, and JavaScript. No build step or server required.
+-   **Oshi Members**: They are [my](https://plynoi.com/) selected.
 
 ## 🚀 How to Use
 
