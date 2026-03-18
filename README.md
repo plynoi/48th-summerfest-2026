@@ -1,9 +1,11 @@
-# Siam-Nippon Summer Fest 2026 - Interactive Schedule
+# BNK48 & CGM48 Siam-Nippon Summer Fest 2026 - Interactive Schedule
 
 - version: 2
 - laste updated: Mar 18th, 2026
 
-This is a simple, single-page web application to display and filter the schedule for the "BNK48 & CGM48 Siam-Nippon Summer Fest 2026" event. It allows users to easily find specific activities by filtering by day, member, and activity type.
+## Overview
+
+This is a simple, static web application to display and filter the schedule for the [BNK48 & CGM48 Siam-Nippon Summer Fest 2026](https://www.facebook.com/bnk48official/posts/pfbid0EPEeg1QDTxLGoAz42Goam9LfdixWV46REBeyuAoRx6bL8RuqUV1YbbxwyyDmNoq2l) event. It allows users to easily find specific activities by filtering by day, member, and activity type.
 
 **Note**: This project is AI generated (using Gemini) with my review.
 
@@ -34,15 +36,17 @@ You can access the web via [https://plynoi.github.io/48th-summerfest-2026/](http
 
 ## 🚀 How to Use
 
-Simply download the project, open the  `index.html` file in any modern web browser.
+This project is a static website. It can be deployed in any web servers.
+
+1. Download the project
+2. Deploy the project in the web server.
+3. Open the  `http://<webserver>:<port>/index.html` website in any modern web browser.
 
 ## ✏️ How to Modify
 
-All schedule data is contained within the `index.html` file.
+All schedule data is contained within the `members-schedule.json` file.
 
-1.  Open `index.html` in a text editor.
-2.  Locate the `scheduleData` constant inside the `<script>` tag.
-3.  You can add, remove, or modify the event objects in this array. The activity filter will update automatically.
+You can add, remove, or modify the event objects in this json file. The activity filter will update automatically.
 
 ## 📄 License
 
