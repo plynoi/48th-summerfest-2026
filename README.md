@@ -5,6 +5,8 @@
 
 This is a simple, single-page web application to display and filter the schedule for the "BNK48 & CGM48 Siam-Nippon Summer Fest 2026" event. It allows users to easily find specific activities by filtering by day, member, and activity type.
 
+**Note**: This project is AI generated (using Gemini) with my review.
+
 ## Event Schedule
 - 🗓️ 27-29 March 2026
 - 📍 JJ Hall, JJ Mall
