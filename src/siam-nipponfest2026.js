@@ -8,7 +8,7 @@
     let allActivities = [];
     let timeSortAsc = true; // ตัวแปรเก็บสถานะการเรียงลำดับเวลา (true = น้อยไปมาก, false = มากไปน้อย)
     // กำหนดรายชื่อเมมเบอร์โอชิของ plynoi ไว้ในตัวแปร เพื่อใช้ในการกรองข้อมูล
-    const oshiMembers = ["Emmy","Hoop","Jew","Khowjow","Lingling","Luksorn","Pancake","Yoghurt"];
+    const oshiMembers = ["Emmy","Hoop","Jew","Khowjow","Lingling","Luksorn","Yoghurt"];
     // กำหนดราคากิจกรรมแยกออกมา เพื่อให้แก้ไขและอัปเดตได้ง่าย
     const activityPrices = {
         "ไม่พร้อมค่ะ": "🎟️ 1 Ticket",
